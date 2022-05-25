@@ -1,3 +1,6 @@
+## type of license for en-parser-chunking.bin
+type of license is unknown, file was downloaded from here https://sourceforge.net/projects/opennlp/files/models-1.5/en-parser-chunking.bin/download
+
 # parser-triples
 [![DOI](https://zenodo.org/badge/doi/10.5061/dryad.s7j17qp.svg)](https://doi.org/10.5061/dryad.s7j17qp)
 
@@ -6,14 +9,13 @@ Shaun D’Souza. Parser extraction of triples in unstructured text. arXiv prepri
 * Steps to compile and run jar
 
 * System requirements
-	* Install Java JDK
-	* Add jdk\bin to Windows PATH
+	* Install Java JDK 17
+	* maven 3.5+
 
-* Compile source files to generate [opennlp-parser-svo-new.jar](/opennlp-parser-svo.jar)
+* Compile source files to generate [parser-triples-svo.jar](/parser-triples-svo.jar)
 
 ```
-javac -cp opennlp-tools-1.6.0.jar ParseKnowledgeNpVisited.java ParseKnowledgeNpVisitedMap.java -d .
-jar cvf opennlp-parser-svo-new.jar ./opennlp
+mvm -package
 ```
 
 * Unstructured text can be parsed as per the Apache OpenNLP developer guide [Chapter 8. Parser] (https://opennlp.apache.org/docs/1.6.0/manual/opennlp.html#tools.parser)
@@ -26,7 +28,7 @@ java -cp opennlp-tools-1.6.0.jar opennlp.tools.cmdline.CLI Parser en-parser-chun
 * SVO Triples are extracted using the command
 	* Unix shell uses colon (:) as the path separator 
 ```
-java -cp opennlp-parser-svo-new.jar;opennlp-tools-1.6.0.jar opennlp.tools.parser.ParseKnowledgeNpVisitedMap -fun -pos head_rules < ie-parser.txt
+java -cp target\parser-triples-svo.jar;opennlp-tools-1.6.0.jar ir.parser_triples.ParseKnowledgeNpVisitedMap -fun -pos head_rules < ie-parser.txt
 ```
 
 * Expected output
@@ -46,5 +48,5 @@ Google and Apple are headquartered in California .
 * Alternate code command
 
 ```
-java -cp opennlp-parser-svo-new.jar;opennlp-tools-1.6.0.jar opennlp.tools.parser.ParseKnowledgeNpVisited -fun -pos head_rules < ie-parser.txt
+java -cp opennlp-parser-svo-new.jar;opennlp-tools-1.6.0.jar ir.parser_triples.ParseKnowledgeNpVisitedSet -fun -pos head_rules < ie-parser.txt
 ```
