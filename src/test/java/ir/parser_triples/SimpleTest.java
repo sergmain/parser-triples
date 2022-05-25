@@ -81,7 +81,7 @@ public class SimpleTest {
         Parser parser = ParserFactory.create(parserModel);
 
 
-        String text = "The quick brown fox jumps over the lazy dog.";
+        String text = "The quick brown fox jumps over the lazy dog .";
 
         Parse[] topParses = ParserTool.parseLine(text, parser, 1);
         assertEquals(1, topParses.length);
